@@ -1,86 +1,182 @@
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=ucs-bom,utf-8,latin1
-endif
+ 	
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+"basic setting
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+sy on
+set t_Co=256
+"colorscheme molokai_cassy
+set nu
+set encoding=utf-8
+set fileencoding=utf-8
+set cursorline
 
-set nocompatible	" Use Vim defaults (much better!)
-set bs=indent,eol,start		" allow backspacing over everything in insert mode
-"set ai			" always set autoindenting on
-set backup		" keep a backup file
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
-			" than 50 lines of registers
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-
-set incsearch
-set wildmenu wildmode=list:full
-
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  augroup redhat
-  autocmd!
-  " In text files, always limit the width of text to 78 characters
-  autocmd BufRead *.txt set tw=78
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
-  " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
-  autocmd BufNewFile,BufReadPre /media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
-  " start with spec file template
-  autocmd BufNewFile *.spec 0r /usr/share/vim/vimfiles/template.spec
-  augroup END
-endif
-
-if has("cscope") && filereadable("/usr/bin/cscope")
-   set csprg=/usr/bin/cscope
-   set csto=0
-   set cst
-   set nocsverb
-   " add any database in current directory
-   if filereadable("cscope.out")
-      cs add cscope.out
-   " else add database pointed to by environment
-   elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-   endif
-   set csverb
-endif
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set nohlsearch
-  set cursorline
-endif
-
-filetype plugin on
-
-if &term=="xterm"
-     set t_Co=8
-     set t_Sb=[4%dm
-     set t_Sf=[3%dm
-endif
-
-" Don't wake up system with blinking cursor:
-" http://www.linuxpowertop.org/known.php
-let &guicursor = &guicursor . ",a:blinkon0"
-
-highlight Normal ctermbg=black ctermfg=grey
-highlight StatusLine term=none cterm=none ctermfg=black ctermbg=grey
-highlight CursorLine term=none cterm=none ctermfg=darkgray
-
-set number
+"#tab
 set laststatus=2
-set statusline=%F%r%h%=
+set expandtab
+set shiftwidth=2
+set softtabstop=4
+set tabstop=2
 
-
-set encoding=UTF-8
-
-"set cindent
-set fileformats=unix,dos
+"#search
+set hlsearch
+set incsearch
 set ignorecase
 set smartcase
-set showmatch
+set wrapscan
 
+"#indent
+set smartindent
+
+"#visualize
+set list
+set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<
+
+"#cursor
+set whichwrap=b,s,h,l,<,>,[,]
+set backspace=indent,eol,start
+
+"#permute
+set wildmode=list:longest
+
+
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+"my command
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+inoremap <C-h>  <C-o><Left>
+inoremap <C-l>  <C-o><Right>
+inoremap <C-j>  <C-o><Down>
+inoremap <C-k>  <C-o><UP>
+inoremap <C-x>x <C-o>x
+inoremap <C-x>w <C-o>dw
+inoremap <C-x>i <Esc>
+inoremap <C-u> <C-o>u
+inoremap <C-r> <C-o><C-r>
+inoremap <C-y> <C-o>yy
+inoremap <C-d> <C-o>dd
+inoremap <C-p> <C-o>p
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap { {}<Left>
+inoremap ( ()<Left>
+inoremap < <><Left>
+
+nnoremap ; :
+nnoremap <C-i> :nohlsearch<CR><Esc>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <Return> o<Esc>
+nmap ,ee :e ++enc=euc-jp<CR>
+nmap ,uu :e ++enc=utf-8<CR>
+
+vnoremap <C-x>i <Esc>
+vnoremap <C-e> <End>
+vnoremap <C-a> <Home>
+
+ab _err error_log(var_export(, true));
+ab _con console.log
+
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+"bundle setting
+"https://github.com/gmarik/vundle
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+"filetype off                   " required!
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+"
+"Bundle 'leafgarland/typescript-vim'
+"Bundle 'kchmck/vim-coffee-script'
+"filetype plugin indent on
+
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+"neobundle setting
+"https://github.com/Shougo/neobundle.vim
+"----------------------------------------------------
+"----------------------------------------------------
+"----------------------------------------------------
+filetype plugin indent off
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+"NeoBundle 'Shougo/neobundle.vim'
+"" solarized カラースキーム
+"NeoBundle 'altercation/vim-colors-solarized'
+"" mustang カラースキーム
+"NeoBundle 'croaker/mustang-vim'
+"" wombat カラースキーム
+"NeoBundle 'jeffreyiacono/vim-colors-wombat'
+"" jellybeans カラースキーム
+"NeoBundle 'nanotech/jellybeans.vim'
+"" lucius カラースキーム
+"NeoBundle 'vim-scripts/Lucius'
+"" zenburn カラースキーム
+"NeoBundle 'vim-scripts/Zenburn'
+"" mrkn256 カラースキーム
+"NeoBundle 'mrkn/mrkn256.vim'
+"" railscasts カラースキーム
+"NeoBundle 'jpo/vim-railscasts-theme'
+"" pyte カラースキーム
+"NeoBundle 'therubymug/vim-pyte'
+"" molokai カラースキーム
+"NeoBundle 'tomasr/molokai'
+"
+"" カラースキーム一覧表示に Unite.vim を使う
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'ujihisa/unite-colorscheme'
+
+
+"" neocomplcache 予測変換
+NeoBundle 'Shougo/neocomplcache.vim'
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" " Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" " Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" " Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" " Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+        \ }
+
+"         " Plugin key-mappings.
+        inoremap <expr><C-g>     neocomplcache#undo_completion()
+        inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+"         " Recommended key-mappings.
+
+"         " <CR>: close popup and save indent.
+         inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+         function! s:my_cr_function()
+           return neocomplcache#smart_close_popup() . "\<CR>"
+           endfunction
+"           " <TAB>: completion.
+           inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"           " <C-h>, <BS>: close popup and delete backword char.
+           inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+           inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+           inoremap <expr><C-y>  neocomplcache#close_popup()
+           inoremap <expr><C-e>  neocomplcache#cancel_popup())>>)>>>)>>>)>>>>>>)>>>>))>)>>>>>)>>)>>}
+
+filetype indent plugin on
+syntax on
+"test
