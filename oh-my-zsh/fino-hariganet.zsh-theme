@@ -33,7 +33,7 @@ local git_info='$(git_prompt_info)'
 
 
 PROMPT="--------------------------------------------------------------------------------
-╭─%{$FG[239]%}%n%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}${current_dir}%{$reset_color%}${git_info} 
+╭─%{$FG[239]%}%n%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$(box_name)%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}${current_dir}%{$reset_color%}${git_info} 
 ╰─$(virtualenv_info)"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="( %{$fg[255]%}"
