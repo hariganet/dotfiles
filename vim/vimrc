@@ -68,6 +68,15 @@ inoremap { {}<Left>
 inoremap ( ()<Left>
 inoremap < <><Left>
 
+"By hariganet
+inoremap <C-.> <C-w>>
+inoremap <C-,> <C-w><
+
+
+"By hariganet
+nnoremap <C-.> <C-w><C->>
+nnoremap <C-,> <C-w><C-<>
+
 nnoremap ; :
 nnoremap <C-i> :nohlsearch<CR><Esc>
 nnoremap <c-j> <c-w>j
