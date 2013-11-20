@@ -31,6 +31,7 @@ fi
 local current_dir='${PWD/#$HOME/~}'
 local git_info='$(git_prompt_info)'
 
+#いつでも消していいコメント
 
 PROMPT="--------------------------------------------------------------------------------
 ╭─%{$FG[239]%}%n%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$(box_name)%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}${current_dir}%{$reset_color%}${git_info} 
