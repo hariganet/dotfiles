@@ -8,7 +8,7 @@
 "----------------------------------------------------
 sy on
 set t_Co=256
-"colorscheme molokai_cassy
+colorscheme desert 
 set nu
 set encoding=utf-8
 set fileencoding=utf-8
@@ -123,31 +123,9 @@ set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 "NeoBundle 'Shougo/neobundle.vim'
-"" solarized カラースキーム
-"NeoBundle 'altercation/vim-colors-solarized'
-"" mustang カラースキーム
-"NeoBundle 'croaker/mustang-vim'
-"" wombat カラースキーム
-"NeoBundle 'jeffreyiacono/vim-colors-wombat'
-"" jellybeans カラースキーム
-"NeoBundle 'nanotech/jellybeans.vim'
-"" lucius カラースキーム
-"NeoBundle 'vim-scripts/Lucius'
-"" zenburn カラースキーム
-"NeoBundle 'vim-scripts/Zenburn'
-"" mrkn256 カラースキーム
-"NeoBundle 'mrkn/mrkn256.vim'
-"" railscasts カラースキーム
-"NeoBundle 'jpo/vim-railscasts-theme'
-"" pyte カラースキーム
-"NeoBundle 'therubymug/vim-pyte'
-"" molokai カラースキーム
-"NeoBundle 'tomasr/molokai'
-"
-"" カラースキーム一覧表示に Unite.vim を使う
-"NeoBundle 'Shougo/unite.vim'
-"NeoBundle 'ujihisa/unite-colorscheme'
 
+" jade syntax
+NeoBundle 'digitaltoad/vim-jade'
 
 "" neocomplcache 予測変換
 NeoBundle 'Shougo/neocomplcache.vim'
@@ -188,4 +166,30 @@ let g:neocomplcache_dictionary_filetype_lists = {
 
 filetype indent plugin on
 syntax on
+
+" colorschemeリスト一覧
+" solarized カラースキーム
+NeoBundle 'altercation/vim-colors-solarized'
+" mustang カラースキーム
+NeoBundle 'croaker/mustang-vim'
+" wombat カラースキーム
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+" jellybeans カラースキーム
+NeoBundle 'nanotech/jellybeans.vim'
+" lucius カラースキーム
+NeoBundle 'vim-scripts/Lucius'
+" zenburn カラースキーム
+NeoBundle 'vim-scripts/Zenburn'
+" mrkn256 カラースキーム
+NeoBundle 'mrkn/mrkn256.vim'
+" railscasts カラースキーム
+NeoBundle 'jpo/vim-railscasts-theme'
+" pyte カラースキーム
+NeoBundle 'therubymug/vim-pyte'
+" molokai カラースキーム
+NeoBundle 'tomasr/molokai'
+
+" カラースキーム一覧表示に Unite.vim を使う
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme' 
 
